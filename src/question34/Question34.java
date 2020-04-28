@@ -1,8 +1,11 @@
 package question34;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,16 +15,19 @@ import model.Fukuoka;
 import model.Tokyo;
 
 /**
- * 課題３２
- * 降順ソート
+ * 課題３４
+ * ファイル出力、エンコード
  */
 public class Question34 {
 
-	public static void main(String[] args) {
+
+
+	public static void main(String[] args) throws Exception {
 
 		/**リストを宣言**/
 		ArrayList<String> list = new ArrayList<String>();
 
+		/**受け取った名前を配列で格納**/
 		String[] names = inputName();
 
 		/**社員クラスを宣言**/
@@ -40,6 +46,67 @@ public class Question34 {
 
 		//降順ソートのメソッド呼び出し
 		sort(emp,list);
+
+		//ファイル出力メソッド
+		print(list);
+
+
+	}
+
+	/**
+	 * ファイル出力
+	 * @param list
+	 * @throws Exception
+	 */
+	private static  void print(ArrayList<String> list) throws Exception {
+
+		//FileOutputStreamクラスのオブジェクトを生成する
+		FileOutputStream fos = new FileOutputStream("C:\\Users\\81702\\Desktop\\employeeList2.csv");
+		OutputStreamWriter  osw = null;
+
+		//エンコード
+		osw = new OutputStreamWriter(fos,"Shift-JIS");
+		BufferedWriter bw = new BufferedWriter(osw);
+
+		//属性名を格納
+		bw.write("id");
+		bw.write(",");
+		bw.write("name");
+		bw.write(",");
+		bw.write("sexuality");
+		bw.write(",");
+		bw.write("salary");
+		bw.write(",");
+		bw.newLine();
+
+		//リストの中身を格納
+		for(String result : list) {
+
+			//ID部分を切り取り格納
+			bw.write(result.substring(result.indexOf("【") + 1,result.indexOf("】")));
+			bw.write(",");
+			//名前部分を切り取り格納
+			bw.write(result.substring(result.indexOf("】") + 1,result.indexOf("(")));
+			bw.write(",");
+			//性別部分を切り取り格納
+			bw.write(result.substring(result.indexOf("(") + 1,result.indexOf(")")));
+			bw.write(",");
+			//給料部分を切り取り格納
+			bw.write(result.substring(result.indexOf("\\") ,result.indexOf("-")));
+			bw.write(",");
+			//改行
+			bw.newLine();
+
+		}
+
+		//ファイルに書き込む
+		bw.flush();
+
+		//ファイルをクローズする
+		bw.close();
+
+		//メッセージを表示
+		System.out.println("********** FILE 作成 **********");
 
 	}
 

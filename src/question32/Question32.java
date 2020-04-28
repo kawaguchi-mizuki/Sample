@@ -1,14 +1,12 @@
 package question32;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import model.AbstractSalary;
 import model.Employee;
 import model.Fukuoka;
+import model.Input;
 import model.Tokyo;
 
 /**
@@ -22,7 +20,8 @@ public class Question32 {
 		/**リストを宣言**/
 		ArrayList<String> list = new ArrayList<String>();
 
-		String[] names = inputName();
+		//Inputクラスから名前を取得
+		String[] names = Input.inputName();
 
 		/**社員クラスを宣言**/
 		Employee[]  emp = new Employee[4];
@@ -43,32 +42,6 @@ public class Question32 {
 
 	}
 
-	/**
-	 * キーボード入力用メソッド
-	 * @return
-	 */
-	private static String[] inputName() {
-
-		/**キーボード入力用のクラス**/
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(isr);
-
-		/**社員名を格納**/
-		String[] names = new String[4];
-
-		//社員名を入力させる
-		for (int i = 0; i < names.length; i++) {
-			try {
-				//キーボード入力
-				System.out.print("input name > ");
-				names[i] = br.readLine();
-			} catch (IOException e) {
-				//エラーメッセージを表示
-				System.out.println("エラー");
-			}
-		}
-		return names;
-	}
 
 	/**
 	 * 降順にソート

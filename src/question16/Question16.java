@@ -23,7 +23,7 @@ public class Question16 {
 		bmi = BmiCalc.getBmi(height, weight);
 
 		//BMIを表示
-		System.out.println("BMI : " + bmi);
+		System.out.println("B M I : " + bmi);
 	}
 
 	/**

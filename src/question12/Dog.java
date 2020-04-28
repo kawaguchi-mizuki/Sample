@@ -10,10 +10,10 @@ public class Dog {
 	private String name ;
 
 
-//	public Dog() {
-//		//メッセージを表示
-//		System.out.println("コンストラクタが呼ばれました");
-//	}
+	public Dog() {
+		//メッセージを表示
+		System.out.println("コンストラクタが呼ばれました");
+	}
 
 
 	/**
